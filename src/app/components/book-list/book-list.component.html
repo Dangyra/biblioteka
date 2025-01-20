@@ -1,0 +1,55 @@
+<div class="card mt-5">
+    <div class="card-header">Knygų sąrašas</div>
+    <div class="card-body">
+        <app-loading  *ngIf="isLoading"></app-loading>
+        
+
+        <div class="alert alert-danger" *ngIf="isError">
+            Įvyko klaida
+
+        </div>
+        
+
+        <table class="table" *ngIf="!isLoading && !isError">
+            <thead>
+                <tr>
+                    <th>
+                        Knygos pavadinimas
+                    </th>
+                    <th>
+                        Knygos autorius
+                    </th>
+                    <th>
+                        Metai
+                    </th>
+                    <th style="width: 200px;">
+                        Veiksmai
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of books; let i=index">
+                    <td>
+                        {{ book.bookName }} 
+                    </td>
+                    <td>
+                        {{ book.author }}
+                    </td>
+                    <td>
+                        {{ book.year }}
+                    </td>
+                    <td>
+                       <a  class="btn btn-success me-3" [routerLink]="['/book', book.id]">Redaguoti</a>
+                       <button class="btn btn-danger" (click)="deleteBook(book.id)">Ištrinti</button>
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+        
+           
+        
+    </div>
+    
+</div>

@@ -1,0 +1,56 @@
+<div class="card mt-5">
+    <div class="card-header">Pridėti naują knygą</div>
+    <div class="card-body">
+        <app-loading *ngIf="isLoading"></app-loading>
+        <div class="alert alert-danger" *ngIf="isError">Įvyko klaida</div>
+            
+       <form (ngSubmit)="updateRecord(f)" #f="ngForm">
+
+       
+            <div class="mb-3">
+                <label for="bookName" class="form-label">Knygos pavadinimas</label>
+                <input 
+                    type="text" 
+                    name="bookName" 
+                    id="bookName" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputBookName.valid && inputBookName.touched" 
+                    [(ngModel)]="bookName"
+                    
+                    required
+                    minlength="2"
+                    maxlength="256"
+                    #inputBookName="ngModel"
+                >
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Knygos autorius</label>
+                <input 
+                        type="text" 
+                        name="author" 
+                        id="author" 
+                        class="form-control" 
+                        [class.is-invalid]="!inputAuthor.valid && inputAuthor.touched" 
+                        [(ngModel)]="author"
+                        required
+                        minlength="2"
+                        maxlength="32"
+                        #inputAuthor="ngModel"
+                >
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Metai</label>
+                <input 
+                        type="text" 
+                        name="year" 
+                        id="year" 
+                        class="form-control" 
+                        [(ngModel)]="year"
+                        #inputYear="ngModel"
+                >
+            </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="!f.valid" >Atnaujinti</button>
+        </form>
+    </div>
+</div>
